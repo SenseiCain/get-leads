@@ -10,26 +10,42 @@ class GetLeads::CLI
         puts ""
         puts "What industry are you looking for?"
 
-        industry = gets
+        industry = gets.chomp
 
         puts ""
         puts "Where are you interested in? (City, State or Zipcode)"
 
-        location = gets
-        editted_location = editted_location(location)
+        location = gets.chomp
 
+        while !(is_valid_location?(location))
+            puts ""
+            puts "That's not a valid location."
+            puts "Please put a 5 digit Zip, or City, State!"
+            location = gets.chomp
+        end
+
+        max_leads = 15
         puts ""
-        puts "How many leads would you like? (max 15)"
+        puts "How many leads would you like? (max #{max_leads})"
 
         #TODO - check to see if this is less than the max. Reask if not.
-        amount = gets
+        amount = gets.chomp
 
         puts ""
         puts "Here ya go!"
     end
 
-    def editted_location(location)
-        #TODO - return city & state or zipcode
-        location
+    def is_valid_location?(location)
+
+        if location.to_i == 0 && location.split(", ").length == 2
+            true
+        elsif location.to_i > 0 && location.length == 5
+            true
+        else
+            false
+        end
     end
+
+
+    
 end
