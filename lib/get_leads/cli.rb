@@ -31,8 +31,15 @@ class GetLeads::CLI
         #TODO - check to see if this is less than the max. Reask if not.
         amount = gets.chomp
 
+        while amount.to_i > max_leads
+            puts ""
+            puts "That's not a valid amount."
+            puts "How many leads would you like? (max #{max_leads})"
+            amount = gets.chomp
+        end
+
         puts ""
-        puts "Here ya go!"
+        puts "#{industry} - #{location} - #{amount}"
     end
 
     def is_valid_location?(location)
