@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
 require_relative "../lib/get_leads"
+
+GetLeads::CLI.new.call
