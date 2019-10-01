@@ -7,6 +7,7 @@ class GetLeads::CLI
 
     def start
         
+        #CLI flow
         puts ""
         puts "What industry are you looking for?"
         industry = get_valid_industry
@@ -20,6 +21,7 @@ class GetLeads::CLI
         puts "How many leads would you like? (max #{max_leads})"
         amount = get_valid_amount(max_leads)
 
+        #TODO - return leads based on industry, location, and amount
         puts ""
         puts "#{industry} - #{location} - #{amount}"
     end
@@ -27,8 +29,8 @@ class GetLeads::CLI
     def get_valid_industry
         industry = gets.chomp
 
-        #Tests to see if input is a string - can be improved
-        while industry.to_i != 0
+        #Tests to see if input is a string
+        while industry.to_i != 0 || industry == "0"
             puts ""
             puts "That's not a valid industry."
             puts "What industry are you looking for?"
@@ -67,7 +69,7 @@ class GetLeads::CLI
         amount = gets.chomp
 
         #Tests to see if the input is between 0 & set max
-        while !(amount.to_i.between?(0, max_leads))
+        while !(amount.to_i.between?(1, max_leads))
             puts ""
             puts "That's not a valid amount."
             puts "How many leads would you like? (max #{max_leads})"
