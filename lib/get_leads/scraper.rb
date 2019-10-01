@@ -17,16 +17,19 @@ class GetLeads::Scraper
     def get_page
         url_formatted_industry = format_industry
         url_formatted_location = format_location
-
-        binding.pry
         formatted_url = "https://www.yellowpages.com/search?search_terms=#{url_formatted_industry}&geo_location_terms=Austin%2C+TX"
 
         Nokogiri::HTML(open(formatted_url))
     end
 
     def scrape_page
-        doc = get_page
-        binding.pry
+        #TODO - only get x amount of results
+        results = get_page.css('.organic .result')
+
+        results.each_with_index do |result, i|
+            new_lead = GetLeads::Lead.new(i)
+        end
+
     end
 
     def gen_leads(industry:, location:, amount:)
@@ -35,7 +38,6 @@ class GetLeads::Scraper
         @amount = amount
 
         scrape_page
-        binding.pry
-        puts "Scraper init"
+        puts "done"
     end
 end
