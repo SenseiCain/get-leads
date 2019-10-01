@@ -27,6 +27,7 @@ class GetLeads::CLI
     def get_valid_industry
         industry = gets.chomp
 
+        #Tests to see if input is a string - can be improved
         while industry.to_i != 0
             puts ""
             puts "That's not a valid industry."
@@ -40,6 +41,7 @@ class GetLeads::CLI
     def get_valid_location
         location = gets.chomp
 
+        #Tests to see if input is a valid zip or city & state combo
         while !(is_valid_location?(location))
             puts ""
             puts "That's not a valid location."
@@ -64,6 +66,7 @@ class GetLeads::CLI
     def get_valid_amount(max_leads)
         amount = gets.chomp
 
+        #Tests to see if the input is between 0 & set max
         while !(amount.to_i.between?(0, max_leads))
             puts ""
             puts "That's not a valid amount."
