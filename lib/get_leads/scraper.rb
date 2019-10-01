@@ -5,9 +5,20 @@ class GetLeads::Scraper
         self.industry.split(" ").join("+")
     end
 
+    def format_location
+        type = nil
+        #If you location.split.length is 2, that means city and state combo
+        if self.location.split(", ").length == 2
+            type = "city & state"
+        else
+            type = "zipcode"
+        end
+        binding.pry
+    end
+
     def get_page
         url_formatted_industry = self.format_industry
-        url_formatted_location = nil
+        url_formatted_location = format_location
         formatted_url = "https://www.yellowpages.com/search?search_terms=#{url_formatted_industry}&geo_location_terms=Austin%2C+TX"
 
         binding.pry
