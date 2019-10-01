@@ -1,0 +1,3 @@
+class GetLeads::Scraper
+
+end

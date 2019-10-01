@@ -1,0 +1,3 @@
+class GetLeads::Lead
+
+end
