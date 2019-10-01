@@ -1,15 +1,30 @@
 class GetLeads::CLI
     def call
         puts "Welcome to my lead generation gem!"
+        puts "This app returns a list of specific leads."
         start
     end
 
     def start
-        puts "This app returns a list of specific leads."
-
+        
         puts ""
         puts "What industry are you looking for?"
+        industry = get_valid_industry
 
+        puts ""
+        puts "Where are you interested in? (City, State or Zipcode)"
+        location = get_valid_location
+
+        max_leads = 15
+        puts ""
+        puts "How many leads would you like? (max #{max_leads})"
+        amount = get_valid_amount(max_leads)
+
+        puts ""
+        puts "#{industry} - #{location} - #{amount}"
+    end
+
+    def get_valid_industry
         industry = gets.chomp
 
         while industry.to_i != 0
@@ -19,9 +34,10 @@ class GetLeads::CLI
             industry = gets.chomp
         end
 
-        puts ""
-        puts "Where are you interested in? (City, State or Zipcode)"
+        industry
+    end
 
+    def get_valid_location
         location = gets.chomp
 
         while !(is_valid_location?(location))
@@ -31,22 +47,7 @@ class GetLeads::CLI
             location = gets.chomp
         end
 
-        max_leads = 15
-        puts ""
-        puts "How many leads would you like? (max #{max_leads})"
-
-        #TODO - check to see if this is less than the max. Reask if not.
-        amount = gets.chomp
-
-        while !(amount.to_i.between?(0, max_leads))
-            puts ""
-            puts "That's not a valid amount."
-            puts "How many leads would you like? (max #{max_leads})"
-            amount = gets.chomp
-        end
-
-        puts ""
-        puts "#{industry} - #{location} - #{amount}"
+        location
     end
 
     def is_valid_location?(location)
@@ -60,6 +61,17 @@ class GetLeads::CLI
         end
     end
 
+    def get_valid_amount(max_leads)
+        amount = gets.chomp
 
+        while !(amount.to_i.between?(0, max_leads))
+            puts ""
+            puts "That's not a valid amount."
+            puts "How many leads would you like? (max #{max_leads})"
+            amount = gets.chomp
+        end
+
+        amount
+    end
     
 end
