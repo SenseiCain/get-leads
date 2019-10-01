@@ -12,6 +12,13 @@ class GetLeads::CLI
 
         industry = gets.chomp
 
+        while industry.to_i != 0
+            puts ""
+            puts "That's not a valid industry."
+            puts "What industry are you looking for?"
+            industry = gets.chomp
+        end
+
         puts ""
         puts "Where are you interested in? (City, State or Zipcode)"
 
@@ -31,7 +38,7 @@ class GetLeads::CLI
         #TODO - check to see if this is less than the max. Reask if not.
         amount = gets.chomp
 
-        while amount.to_i > max_leads
+        while !(amount.to_i.between?(0, max_leads))
             puts ""
             puts "That's not a valid amount."
             puts "How many leads would you like? (max #{max_leads})"
