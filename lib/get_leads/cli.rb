@@ -22,6 +22,11 @@ class GetLeads::CLI
         amount = get_valid_amount(max_leads)
 
         #TODO - return leads based on industry, location, and amount
+        scrapped_data = GetLeads::Scraper.new.gen_leads(
+            industry: industry,
+            location: location,
+            amount: amount
+        )
         puts ""
         puts "#{industry} - #{location} - #{amount}"
     end
