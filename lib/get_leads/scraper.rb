@@ -27,7 +27,7 @@ class GetLeads::Scraper
         @amount = amount
 
         self.amount.times do |i|
-
+            new_lead = GetLeads::Lead.new
         end
 
         puts "done"

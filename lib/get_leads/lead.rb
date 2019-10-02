@@ -1,5 +1,5 @@
 class GetLeads::Lead
-    def initialize(test)
+    def initialize
         #puts "hey #{test}"
     end
 end
