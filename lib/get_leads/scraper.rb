@@ -25,16 +25,13 @@ class GetLeads::Scraper
         @location = location
         @amount = amount
 
-
-        #TODO - Gen leads based on results array
-        #TODO - only get "amount" of results
         #TODO - pull in actual data
         results = scrape_page_results[0, amount]
         results.each_with_index do |result, i|
             new_lead = GetLeads::Lead.new
-            new_lead.name = "test"
-            new_lead.address = "test"
-            puts "#{i}"
+            new_lead.name = result.css(".info h2 a span").text
+            new_lead.number = result.css(".info .info-secondary .phone").text
+            new_lead.address = result.css(".info .info-secondary .street-address").text
         end
 
         puts "done"
