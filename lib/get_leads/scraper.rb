@@ -1,5 +1,5 @@
 class GetLeads::Scraper
-    attr_accessor :industry, :location, :amount
+    attr_accessor :industry, :location
 
     def format_industry
         #Formats industry input to be URL friendly
@@ -23,17 +23,13 @@ class GetLeads::Scraper
     def gen_leads(industry:, location:, amount:)
         @industry = industry
         @location = location
-        @amount = amount
 
-        #TODO - pull in actual data
         results = scrape_page_results[0, amount]
-        results.each_with_index do |result, i|
+        results.each do |result|
             new_lead = GetLeads::Lead.new
             new_lead.name = result.css(".info h2 a span").text
             new_lead.number = result.css(".info .info-secondary .phone").text
             new_lead.address = result.css(".info .info-secondary .street-address").text
         end
-
-        puts "done"
     end
 end

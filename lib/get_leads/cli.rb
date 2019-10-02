@@ -31,7 +31,7 @@ class GetLeads::CLI
         )
 
         puts ""
-        puts "#{self.industry} - #{self.location} - #{self.amount}"
+        print_business_names
     end
 
     def get_valid_industry
@@ -88,7 +88,9 @@ class GetLeads::CLI
     end
 
     def print_business_names
-        
+        GetLeads::Lead.all.each_with_index do |lead, i|
+            puts "#{i + 1}. #{lead.name} - #{lead.number}"
+        end
     end
     
 end
