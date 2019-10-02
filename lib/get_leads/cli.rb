@@ -89,7 +89,7 @@ class GetLeads::CLI
 
     def print_business_names
         GetLeads::Lead.all.each_with_index do |lead, i|
-            puts "#{i + 1}. #{lead.name} - #{lead.number}"
+            puts "#{i + 1}. #{lead.name} - #{lead.number}".green
         end
     end
     
