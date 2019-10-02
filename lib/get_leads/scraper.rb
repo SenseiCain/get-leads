@@ -22,12 +22,12 @@ class GetLeads::Scraper
     end
 
     def gen_leads(industry:, location:, amount:)
-        @industry = industry
-        @location = location
-        @amount = amount
 
-        self.amount.times do |i|
+        amount.times do |i|
             new_lead = GetLeads::Lead.new
+            new_lead.name = "test"
+            new_lead.location = location
+            new_lead.industry
         end
 
         puts "done"
