@@ -32,6 +32,10 @@ class GetLeads::CLI
 
         puts ""
         print_business_names
+
+        puts ""
+        puts "Which business would you like more infor on? (1-#{amount})"
+        more_info
     end
 
     def get_valid_industry
@@ -89,8 +93,17 @@ class GetLeads::CLI
 
     def print_business_names
         GetLeads::Lead.all.each_with_index do |lead, i|
-            puts "#{i + 1}. #{lead.name} - #{lead.number}".green
+            puts "#{i + 1}. #{lead.name}".green
         end
+    end
+
+    def more_info
+        index = gets.chomp.to_i - 1
+        business = GetLeads::Lead.all[index]
+        puts ""
+        puts "#{business.name}".green
+        puts "  -#{business.number}".green
+        puts "  -#{business.address}".green
     end
     
 end

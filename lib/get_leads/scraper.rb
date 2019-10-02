@@ -14,6 +14,7 @@ class GetLeads::Scraper
     def get_page
         formatted_url = "https://www.yellowpages.com/search?search_terms=#{format_industry}&geo_location_terms=#{format_location}"
         Nokogiri::HTML(open(formatted_url))
+        #binding.pry
     end
 
     def scrape_page_results
