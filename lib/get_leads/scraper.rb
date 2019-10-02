@@ -17,8 +17,7 @@ class GetLeads::Scraper
     end
 
     def scrape_page_results
-        #TODO - only get x amount of results
-        results = get_page.css('.organic .result')
+        self.get_page.css('.organic .result')
     end
 
     def gen_leads(industry:, location:, amount:)
@@ -26,11 +25,16 @@ class GetLeads::Scraper
         @location = location
         @amount = amount
 
-        amount.times do |i|
+
+        #TODO - Gen leads based on results array
+        #TODO - only get "amount" of results
+        #TODO - pull in actual data
+        results = scrape_page_results[0, amount]
+        results.each_with_index do |result, i|
             new_lead = GetLeads::Lead.new
             new_lead.name = "test"
             new_lead.address = "test"
-            new_lead.number = "test"
+            puts "#{i}"
         end
 
         puts "done"
