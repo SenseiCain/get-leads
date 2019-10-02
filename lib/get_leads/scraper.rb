@@ -26,7 +26,10 @@ class GetLeads::Scraper
         @location = location
         @amount = amount
 
-        scrape_page_results
+        self.amount.times do |i|
+
+        end
+
         puts "done"
     end
 end

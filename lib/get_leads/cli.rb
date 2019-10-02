@@ -1,4 +1,6 @@
 class GetLeads::CLI
+    attr_accessor :industry, :location, :amount
+
     def call
         puts "Welcome to my lead generation gem!"
         puts "This app returns a list of specific leads."
@@ -10,25 +12,26 @@ class GetLeads::CLI
         #CLI flow
         puts ""
         puts "What industry are you looking for?"
-        industry = get_valid_industry
+        @industry = get_valid_industry
 
         puts ""
         puts "Where are you interested in? (City, State or Zipcode)"
-        location = get_valid_location
+        @location = get_valid_location
 
         max_leads = 15
         puts ""
         puts "How many leads would you like? (max #{max_leads})"
-        amount = get_valid_amount(max_leads)
+        @amount = get_valid_amount(max_leads)
 
         #TODO - return leads based on industry, location, and amount
-        scrapped_data = GetLeads::Scraper.new.gen_leads(
-            industry: industry,
-            location: location,
-            amount: amount
+        GetLeads::Scraper.new.gen_leads(
+            industry: self.industry,
+            location: self.location,
+            amount: self.amount
         )
+
         puts ""
-        puts "#{industry} - #{location} - #{amount}"
+        puts "#{self.industry} - #{self.location} - #{self.amount}"
     end
 
     def get_valid_industry
@@ -81,7 +84,11 @@ class GetLeads::CLI
             amount = gets.chomp
         end
 
-        amount
+        amount.to_i
+    end
+
+    def print_business_names
+        
     end
     
 end
