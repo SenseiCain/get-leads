@@ -42,11 +42,21 @@ class GetLeads::CLI
         user_selection = gets.chomp
 
         while user_selection != "exit"
-            more_info(user_selection)
+            #binding.pry
+            if (user_selection.to_i == 0 && user_selection != "0") || !(user_selection.to_i.between?(1, GetLeads::Lead.all.length))
+                puts ""
+                puts "Sorry, that was not a valid selection."
+                puts "Select another business you would like to see. Or type 'exit' to leave."
 
-            puts ""
-            puts "Select another business you would like to see. Or type 'exit' to leave."
+            else
+                more_info(user_selection)
+
+                puts ""
+                puts "Select another business you would like to see. Or type 'exit' to leave."
+            end
+
             user_selection = gets.chomp
+      
         end
     end
 
