@@ -34,11 +34,7 @@ class GetLeads::CLI
         print_business_names
 
         puts ""
-        puts "Which business would you like more info on? (1-#{amount})"
-        more_info(gets.chomp)
-
-        puts ""
-        puts "Select another business you would like to see. Or type 'exit' to leave."
+        puts "Which business would you like more info on? (1-#{amount}). Or type 'exit' to leave."
         user_selection = gets.chomp
 
         while user_selection != "exit"
@@ -46,17 +42,13 @@ class GetLeads::CLI
             if (user_selection.to_i == 0 && user_selection != "0") || !(user_selection.to_i.between?(1, GetLeads::Lead.all.length))
                 puts ""
                 puts "Sorry, that was not a valid selection."
-                puts "Select another business you would like to see. Or type 'exit' to leave."
-
             else
                 more_info(user_selection)
-
                 puts ""
-                puts "Select another business you would like to see. Or type 'exit' to leave."
             end
 
+            puts "Which business would you like more info on? (1-#{amount}). Or type 'exit' to leave."
             user_selection = gets.chomp
-      
         end
     end
 
