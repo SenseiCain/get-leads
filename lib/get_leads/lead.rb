@@ -4,7 +4,6 @@ class GetLeads::Lead
     @@all = []
 
     def initialize
-        #puts "hey #{test}"
         save
     end
 

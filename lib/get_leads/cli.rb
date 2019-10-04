@@ -23,7 +23,6 @@ class GetLeads::CLI
         puts "How many leads would you like? (max #{max_leads})"
         @amount = get_valid_amount(max_leads)
 
-        #TODO - return leads based on industry, location, and amount
         GetLeads::Scraper.new.gen_leads(
             industry: self.industry,
             location: self.location,

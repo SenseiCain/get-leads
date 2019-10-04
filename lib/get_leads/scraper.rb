@@ -14,7 +14,6 @@ class GetLeads::Scraper
     def get_page
         formatted_url = "https://www.yellowpages.com/search?search_terms=#{format_industry}&geo_location_terms=#{format_location}"
         Nokogiri::HTML(open(formatted_url))
-        #binding.pry
     end
 
     def scrape_page_results
@@ -25,6 +24,7 @@ class GetLeads::Scraper
         @industry = industry
         @location = location
 
+        #TODO - when amount > results, it will throw an error
         results = scrape_page_results[0, amount]
         results.each do |result|
             new_lead = GetLeads::Lead.new
