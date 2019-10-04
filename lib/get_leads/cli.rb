@@ -34,8 +34,20 @@ class GetLeads::CLI
         print_business_names
 
         puts ""
-        puts "Which business would you like more infor on? (1-#{amount})"
-        more_info
+        puts "Which business would you like more info on? (1-#{amount})"
+        more_info(gets.chomp)
+
+        puts ""
+        puts "Select another business you would like to see. Or type 'exit' to leave."
+        user_selection = gets.chomp
+
+        while user_selection != "exit"
+            more_info(user_selection)
+
+            puts ""
+            puts "Select another business you would like to see. Or type 'exit' to leave."
+            user_selection = gets.chomp
+        end
     end
 
     def get_valid_industry
@@ -97,9 +109,8 @@ class GetLeads::CLI
         end
     end
 
-    def more_info
-        index = gets.chomp.to_i - 1
-        business = GetLeads::Lead.all[index]
+    def more_info(user_input)
+        business = GetLeads::Lead.all[user_input.to_i - 1]
         puts ""
         puts "#{business.name}".green
         puts "  -#{business.number}".green
