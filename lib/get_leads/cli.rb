@@ -9,6 +9,8 @@ class GetLeads::CLI
 
     def start
         
+        GetLeads::Lead.clear
+
         #CLI flow
         puts ""
         puts "What industry are you looking for?"
@@ -33,20 +35,22 @@ class GetLeads::CLI
         print_business_names
 
         puts ""
-        puts "Which business would you like more info on? (1-#{amount}). Or type 'exit' to leave."
+        puts "Which business would you like more info on? (1-#{amount}). Or type 'another business'. Or type 'exit' to leave."
         user_selection = gets.chomp
 
         while user_selection != "exit"
-            #binding.pry
-            if (user_selection.to_i == 0 && user_selection != "0") || !(user_selection.to_i.between?(1, GetLeads::Lead.all.length))
+            if (user_selection == 'another business')
+                start
+            elsif (user_selection.to_i == 0 && user_selection != "0") || !(user_selection.to_i.between?(1, GetLeads::Lead.all.length))
                 puts ""
                 puts "Sorry, that was not a valid selection."
+                
             else
                 more_info(user_selection)
                 puts ""
             end
 
-            puts "Which business would you like more info on? (1-#{amount}). Or type 'exit' to leave."
+            puts "Which business would you like more info on? (1-#{amount}). Or type 'another business'. Or type 'exit' to leave."
             user_selection = gets.chomp
         end
     end
