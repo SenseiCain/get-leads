@@ -1,6 +1,8 @@
 # GetLeads
 
-This is a CLI gem that generates leads for local businesses in a given area. It's refers to YellowPages and retieves information that the user asks for. #Dialin4Dollars
+This is a CLI gem that generates leads for local businesses based on location, industry, and quantity. Leads are sourced from public information hosted by YellowPages.
+
+This is a project that I made while enrolled in Flatiron school demonstrating my knowledge of Ruby, OOP, and web scraping.
 
 ## Installation
 
